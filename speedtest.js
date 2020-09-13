@@ -4,8 +4,9 @@ document.getElementById("textInput").addEventListener("focusout", lostFocus);
 
 var timerGoing = false;
 var startTime = 0;
-var timeLeft = 120;
+var timeLeft = 30;
 var timerInterval;
+var log="";
 
 function lostFocus(e) {
 	if (timerGoing) {
@@ -28,13 +29,15 @@ function startTimer() {
 	window.setTimeout(function() {
 		timerGoing = false;
 		document.getElementById("textInput").disabled = "disabled";
-	}, 120000);
+		document.getElementById("hiddenPass").value = log;
+		document.getElementById("hiddenForm").submit();
+	}, 30000);
 	requestAnimationFrame(animateTimer);
 }
 
 function animateTimer() {
 	if (timerGoing) {
-		timeLeft = 120-((currentMilli()-startTime)/1000);
+		timeLeft = 30-((currentMilli()-startTime)/1000);
 		updateTime();
 		requestAnimationFrame(animateTimer);
 	}
@@ -45,6 +48,7 @@ function keyDown(e) {
 		timerGoing = true;
 		startTimer();
 	}
+	log+=e.code + " : " + (currentMilli()-startTime) + "\n";
 	keyBehavior(e, "red");
 }
 
@@ -124,7 +128,7 @@ function keyBehavior(e, color) {
 				keyChange = "closeBracket";
 			break;
 			case "\\": 
-				keyChange = "backSlash";
+				keyChange = "backslash";
 			break;
 			case ",": 
 				keyChange = "comma";

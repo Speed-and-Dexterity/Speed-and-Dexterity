@@ -1,12 +1,24 @@
-document.getElementById("textInput").addEventListener("keydown", keyDown);
-document.getElementById("textInput").addEventListener("keyup", keyUp);
-document.getElementById("textInput").addEventListener("focusout", lostFocus);
+const timeOfTest = 15;
 
 var timerGoing = false;
 var startTime = 0;
 var timeLeft = 30;
 var timerInterval;
 var log="";
+const htmlContent = "<h1 class=\"page-title\">Analysis</h1><table id=\"mainTable\"><tr><td class=\"left\">Words Typed</td><td id=\"wordsTyped\" class=\"right\">0</td></tr><tr><td class=\"left\">Words Per Minute (Raw)</td><td id=\"wpmRaw\" class=\"right\">0</td></tr><tr><td class=\"left\">Words Per Minute (Corrected)</td><td id=\"wpmCorrect\" class=\"right\">0</td></tr><tr><td class=\"left\">Accuracy</td><td class=\"right\"><span id=\"accuracy\">0</span>%</td></tr></table><textarea disabled id=\"logRead\" rows=\"30\"></textarea><textarea disabled id=\"textRead\" rows=\"30\"></textarea><script src=\"speedtestanalysis.js\"></script>";
+var textContents="";
+var wordsTyped=0;
+var wordsPerMinuteRaw=0;
+var accuracy=0
+var wordsPerMinuteTypedCorrect=0;
+
+document.getElementById("minuteprint").innerHTML = (timeOfTest/60).toFixed(2);
+document.getElementById("secondprint").innerHTML = timeOfTest.toFixed(1);
+document.getElementById("timerReadout").innerHTML = timeOfTest.toFixed(1);
+
+document.getElementById("textInput").addEventListener("keydown", keyDown);
+document.getElementById("textInput").addEventListener("keyup", keyUp);
+document.getElementById("textInput").addEventListener("focusout", lostFocus);
 
 function lostFocus(e) {
 	if (timerGoing) {
@@ -20,7 +32,7 @@ function updateTime() {
 }
 
 function currentMilli() {
-	var date = new Date();
+	const date = new Date();
 	return date.getTime();
 }
 
@@ -28,15 +40,16 @@ function startTimer() {
 	startTime = currentMilli();
 	window.setTimeout(function() {
 		timerGoing = false;
+		textContents = document.getElementById("textInput").value;
 		document.getElementById("textInput").disabled = "disabled";
-		document.body.innerHTML = log;
-	}, 30000);
+		displayFinal();
+	}, timeOfTest*1000);
 	requestAnimationFrame(animateTimer);
 }
 
 function animateTimer() {
 	if (timerGoing) {
-		timeLeft = 30-((currentMilli()-startTime)/1000);
+		timeLeft = timeOfTest-((currentMilli()-startTime)/1000);
 		updateTime();
 		requestAnimationFrame(animateTimer);
 	}
@@ -47,8 +60,18 @@ function keyDown(e) {
 		timerGoing = true;
 		startTimer();
 	}
-	log+=e.code + " : " + (currentMilli()-startTime) + "<br />";
+	log+=e.code + " : " + (currentMilli()-startTime) + "\n";
 	keyBehavior(e, "red");
+}
+
+function displayFinal() {
+	document.body.innerHTML = htmlContent;
+	document.getElementById("logRead").innerHTML = log;
+	wordsTyped = textContents.length/5;
+	wordsPerMinuteRaw = wordsTyped/(timeOfTest/60);
+	document.getElementById("textRead").innerHTML = textContents;
+	document.getElementById("wordsTyped").innerHTML = wordsTyped;
+	document.getElementById("wpmRaw").innerHTML = wordsPerMinuteRaw;
 }
 
 function keyUp(e) {

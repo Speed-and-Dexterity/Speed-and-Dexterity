@@ -1,3 +1,57 @@
-h1 {
-	color: red;
+@font-face {
+	font-family: veraMono;
+	src: url(VeraMono.ttf);
+}
+
+div.key {
+	font-family: veraMono;
+	outline: black solid 1px;
+	display: inline-block;
+	z-index: 99;
+	padding: 10px 15px 10px 15px;
+	margin: 0;
+}
+
+div.key.first {
+}
+
+div.key.second {
+}
+
+div.key.third {
+}
+
+div.key.fourth {
+}
+
+div.key.fifth {
+}
+
+div.word {
+
+}
+
+div#leftShift {
+	padding-right: 33px;
+}
+div#rightShift {
+	padding-left: 33px;
+}
+div#tab {
+	padding-right: 22px;
+}
+div#backspace {
+	padding: 10px 12px 10px 38px;
+}
+div#menu {
+	padding: 10px 8px 10px 8px;
+}
+div#space {
+	padding: 10px 68px 10px 68px;
+}
+div#capsLock {
+	padding-right: 17px;
+}
+div#rightWindowsKey {
+	padding: 10px 12px 10px 12px;
 }

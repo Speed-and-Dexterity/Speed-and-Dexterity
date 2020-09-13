@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Speed and Dexterity | Speed Test</title>
 <meta http-equiv="Cache-Control" content="no-store" />
 <link rel="stylesheet" href="main.css" />
 <link rel="stylesheet" href="speedtest.css" />
@@ -88,7 +89,12 @@
 		<div class="key fifth word" id="rightControl">Ctrl</div>
 	</div>
 	<div id="timer">
-		<h2 id="timerText">Time: <span id="timerReadout">120.0</span> seconds</h2>
+		<h2 id="timerText">Time: <span id="timerReadout">30.0</span> seconds</h2>
+	</div>
+	<div id="pass">
+		<form id="hiddenForm" action="results.php" method="post" autocomplete="off">
+			<input type="text" disabled="disabled" id="hiddenPass" name="logdata" />
+		</form>
 	</div>
 </div> 
 </body>

@@ -1,7 +1,11 @@
 body {
-	background-color: #e3e3e3
+	background-color: #e3e3e3;
 }
 
-h1 {
-	
+h1.page-title {
+	color: #c71e12;
+}
+
+.sub-title {
+	color: #e88780;
 }

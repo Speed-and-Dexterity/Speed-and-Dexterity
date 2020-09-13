@@ -3,6 +3,18 @@
 	src: url(VeraMono.ttf);
 }
 
+div#keyboardLayout {
+	cursor: default;
+	margin-bottom: 0px;
+}
+
+div#timer {
+	margin-top: 15px;
+}
+h2#timerText {
+	margin: 0;
+}
+
 div.key {
 	font-family: veraMono;
 	outline: black solid 1px;
@@ -44,14 +56,21 @@ div#backspace {
 	padding: 10px 12px 10px 38px;
 }
 div#menu {
+	color: transparent;
 	padding: 10px 8px 10px 8px;
 }
 div#space {
 	padding: 10px 68px 10px 68px;
 }
-div#capsLock {
+div#capslock {
 	padding-right: 17px;
 }
 div#rightWindowsKey {
 	padding: 10px 12px 10px 12px;
+}
+
+textarea#textInput {
+	width: 628px;
+	height: 170px;
+	resize: none;
 }

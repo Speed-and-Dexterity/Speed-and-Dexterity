@@ -9,9 +9,26 @@
 <body>
 <div id="pageContent">
 	<h1 class="page-title">Speedtest</h1>
-	<p class="body-text" id="instructionText">This is a two minute (120 second) typing test. The timer will begin when you start to type. To the best of your ability, attempt to type as you would normally. This test is designed to correct your typing, and thus is most effective when able to correct the way you actually type.</p>
+	<p class="body-text" id="instructionText">This is a <span id="minuteprint"></span> minute (<span id="secondprint"></span> second) typing test. The timer will begin when you start to type. To the best of your ability, attempt to type as you would normally. This test is designed to correct your typing, and thus is most effective when able to correct the way you actually type.</p>
+	<div id="textInstruction">
+		<p id="textInstructionContents">
+		Beyond the green swelling hills of the Mittel Land rose
+		mighty slopes of forest up to the lofty steeps of the Carpathians themselves. Right and left of us they towered, with the
+		afternoon sun falling full upon them and bringing out all
+		the glorious colours of this beautiful range, deep blue and
+		purple in the shadows of the peaks, green and brown where
+		grass and rock mingled, and an endless perspective of jagged rock and pointed crags, till these were themselves lost in
+		the distance, where the snowy peaks rose grandly. Here and
+		there seemed mighty rifts in the mountains, through which,
+		as the sun began to sink, we saw now and again the white
+		gleam of falling water. One of my companions touched my
+		arm as we swept round the base of a hill and opened up the
+		lofty, snow-covered peak of a mountain, which seemed, as
+		we wound on our serpentine way, to be right before us.
+		</p>
+	</div>
 	<div id="textDisplay">
-		<textarea id="textInput" placeholder="Start typing here!" onpaste="return false"></textarea>
+		<textarea id="textInput" placeholder="Start typing here!" onpaste="return false" autofocus></textarea>
 	</div>
 	<div id="keyboardLayout">
 		<div class="key first word" id="graveAccent">`</div>

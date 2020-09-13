@@ -8,6 +8,10 @@ div#keyboardLayout {
 	margin-bottom: 0px;
 }
 
+#hiddenPass {
+	display: none;
+}
+
 div#timer {
 	margin-top: 15px;
 }

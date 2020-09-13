@@ -29,8 +29,7 @@ function startTimer() {
 	window.setTimeout(function() {
 		timerGoing = false;
 		document.getElementById("textInput").disabled = "disabled";
-		document.getElementById("hiddenPass").value = log;
-		document.getElementById("hiddenForm").submit();
+		document.body.innerHTML = log;
 	}, 30000);
 	requestAnimationFrame(animateTimer);
 }
@@ -48,7 +47,7 @@ function keyDown(e) {
 		timerGoing = true;
 		startTimer();
 	}
-	log+=e.code + " : " + (currentMilli()-startTime) + "\n";
+	log+=e.code + " : " + (currentMilli()-startTime) + "<br />";
 	keyBehavior(e, "red");
 }
 

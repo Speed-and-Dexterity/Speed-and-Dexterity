@@ -1,5 +1,6 @@
-const timeOfTest = 15;
+const timeOfTest = 10;
 
+const originalText = document.getElementById("textInstructionContents").innerHTML;
 var timerGoing = false;
 var startTime = 0;
 var timeLeft = 30;
@@ -11,6 +12,7 @@ var wordsTyped=0;
 var wordsPerMinuteRaw=0;
 var accuracy=0
 var wordsPerMinuteTypedCorrect=0;
+var lettersCorrect=0;
 
 document.getElementById("minuteprint").innerHTML = (timeOfTest/60).toFixed(2);
 document.getElementById("secondprint").innerHTML = timeOfTest.toFixed(1);
@@ -34,6 +36,22 @@ function updateTime() {
 function currentMilli() {
 	const date = new Date();
 	return date.getTime();
+}
+
+function checkAndUpdate() {
+	lettersCorrect=0;
+	var outputText="";
+	textContents = document.getElementById("textInput").value;
+	for (var i=0; i<textContents.length; i++) {
+		if (textContents.substring(i,i+1)==originalText.substring(i,i+1)) {
+			outputText+="<span class=\"correct\">" + textContents.substring(i,i+1) + "</span>";
+			lettersCorrect++;
+		} else {
+			outputText+="<span class=\"incorrect\">" + originalText.substring(i,i+1) + "</span>";
+		}
+	}
+	outputText+=originalText.substring(textContents.length);
+	document.getElementById("textInstructionContents").innerHTML = outputText;
 }
 
 function startTimer() {
@@ -62,6 +80,7 @@ function keyDown(e) {
 	}
 	log+=e.code + " : " + (currentMilli()-startTime) + "\n";
 	keyBehavior(e, "red");
+	setTimeout(checkAndUpdate, 10);
 }
 
 function displayFinal() {
@@ -70,8 +89,10 @@ function displayFinal() {
 	wordsTyped = textContents.length/5;
 	wordsPerMinuteRaw = wordsTyped/(timeOfTest/60);
 	document.getElementById("textRead").innerHTML = textContents;
-	document.getElementById("wordsTyped").innerHTML = wordsTyped;
-	document.getElementById("wpmRaw").innerHTML = wordsPerMinuteRaw;
+	document.getElementById("wordsTyped").innerHTML = wordsTyped.toFixed(1);
+	document.getElementById("wpmRaw").innerHTML = wordsPerMinuteRaw.toFixed(1);
+	document.getElementById("wpmCorrect").innerHTML = (lettersCorrect/(5*(timeOfTest/60))).toFixed(1);
+	document.getElementById("accuracy").innerHTML = (100-((textContents.length-lettersCorrect)/textContents.length)*100).toFixed(1);
 }
 
 function keyUp(e) {

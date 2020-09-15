@@ -13,6 +13,14 @@ table {
 	width: 300px;
 }
 
+.correct {
+	color: #25c430;
+}
+
+.incorrect {
+	color: red;
+}
+
 div#textInstruction {
 	width: 612px;
 	padding: 0px 10px 0px 10px;
